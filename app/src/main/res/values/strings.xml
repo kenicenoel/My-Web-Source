@@ -4,5 +4,5 @@
     <string name="package_history">Package history</string>
     <string name="manage_pre_alerts">Manage pre-alerts</string>
     <string name="package_estimator">Package estimator</string>
-    <string name="str_more">More ></string>
+    <string name="str_more">...</string>
 </resources>

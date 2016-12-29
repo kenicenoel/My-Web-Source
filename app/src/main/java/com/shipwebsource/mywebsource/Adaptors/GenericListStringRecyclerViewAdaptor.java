@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.shipwebsource.mywebsource.Blueprints.PackageHistoryObject;
+import com.shipwebsource.mywebsource.Blueprints.PackageObject;
 import com.shipwebsource.mywebsource.R;
 
 import java.util.ArrayList;
@@ -17,12 +17,12 @@ public class GenericListStringRecyclerViewAdaptor extends RecyclerView.Adapter<G
 {
     private static String TAG = GenericListStringRecyclerViewAdaptor.class.getSimpleName();
     private LayoutInflater inflator;
-    private ArrayList<PackageHistoryObject> packageHistoryObjects;
+    private ArrayList<PackageObject> packageObjects;
 
 
-    public GenericListStringRecyclerViewAdaptor(ArrayList<PackageHistoryObject> packageHistoryObjects)
+    public GenericListStringRecyclerViewAdaptor(ArrayList<PackageObject> packageObjects)
     {
-        this.packageHistoryObjects = packageHistoryObjects;
+        this.packageObjects = packageObjects;
     }
 
 
@@ -37,7 +37,7 @@ public class GenericListStringRecyclerViewAdaptor extends RecyclerView.Adapter<G
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position)
     {
-        PackageHistoryObject current = packageHistoryObjects.get(position);
+        PackageObject current = packageObjects.get(position);
         holder.packageNumber.setText(current.getPackageNumber());
         holder.description.setText(current.getDescription());
         holder.shipper.setText(current.getShipper());
@@ -85,7 +85,7 @@ public class GenericListStringRecyclerViewAdaptor extends RecyclerView.Adapter<G
     @Override
     public int getItemCount()
     {
-        return packageHistoryObjects.size();
+        return packageObjects.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder

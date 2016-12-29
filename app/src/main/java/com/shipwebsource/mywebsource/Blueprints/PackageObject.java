@@ -1,7 +1,7 @@
 package com.shipwebsource.mywebsource.Blueprints;
 
 
-public class PackageHistoryObject
+public class PackageObject
 {
 
 
@@ -11,12 +11,12 @@ public class PackageHistoryObject
     String price;
     String status;
 
-    public PackageHistoryObject()
+    public PackageObject()
     {
 
     }
 
-    public PackageHistoryObject(String packageNumber, String description, String shipper, String price,String status)
+    public PackageObject(String packageNumber, String description, String shipper, String price, String status)
     {
 
 
