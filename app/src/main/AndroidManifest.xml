@@ -28,6 +28,11 @@
         </activity>
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".MainActivity"></activity>
+
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAbTeRVHmaKz8LYRdCx0sGFY66cctS97qI" />
     </application>
 
 </manifest>
