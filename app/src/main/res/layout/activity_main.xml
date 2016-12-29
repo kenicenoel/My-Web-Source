@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
@@ -8,45 +8,172 @@
     android:background="@color/whiteGrey"
     tools:context="com.shipwebsource.mywebsource.MainActivity">
 
-    <include layout="@layout/toolbar"
-        android:id="@+id/toolbar" />
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabs"
-        style="@style/MyCustomTabLayout"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:layout_below="@id/toolbar"
-        />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/titleLoggedInUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tabs"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:text="John Doe (WEB 12345)"
-        android:textSize="12sp"
-        android:layout_marginRight="10dp"
-        android:textColor="@color/primaryTextColor"
-        android:layout_alignParentRight="true"
-        android:drawableLeft="@drawable/ic_verified_user_green_a400_24dp"
-        android:drawablePadding="5dp"
-        android:gravity="center_vertical"
-        android:fontFamily="sans-serif-regular"/>
+        <include layout="@layout/toolbar"
+            android:id="@+id/toolbar" />
+
+        <RelativeLayout
+            android:id="@+id/layout_tags"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:scrollbars="horizontal"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/tag_customs_rates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:text="Customs rates"
+                android:textSize="12sp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/white"
+                android:background="@drawable/tags"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:fontFamily="sans-serif-regular"/>
+
+            <TextView
+                android:id="@+id/tag_package_estimator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_toRightOf="@id/tag_customs_rates"
+                android:layout_margin="10dp"
+                android:text="@string/package_estimator"
+                android:textSize="12sp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/white"
+                android:background="@drawable/tags"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:fontFamily="sans-serif-regular"/>
+
+            <TextView
+                android:id="@+id/tag_pre_alerts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_toRightOf="@id/tag_package_estimator"
+                android:layout_margin="10dp"
+                android:text="@string/manage_pre_alerts"
+                android:textSize="12sp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/white"
+                android:background="@drawable/tags"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:fontFamily="sans-serif-regular"/>
 
 
 
-    <!-- View pager to swipe views -->
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_below="@id/titleLoggedInUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/packageHistoryHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/package_history"
+            android:layout_below="@id/layout_tags"
+            android:textColor="@color/colorPrimary"
+            android:layout_margin="10dp"
+            android:textSize="17sp"
+            />
+
+        <TextView
+            android:id="@+id/loadMorePackageHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_more"
+            android:layout_below="@id/layout_tags"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/primaryTextColor"
+            android:fontFamily="sans-serif-light"
+            android:layout_margin="10dp"
+            android:textSize="17sp"
+            />
 
 
 
-</RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/layout_packageHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/packageHistoryHeader">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview_packageHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="10dp"
+                >
+
+            </android.support.v7.widget.RecyclerView>
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/incomingPackagesHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Incoming packages"
+            android:layout_below="@id/layout_packageHistory"
+            android:textColor="@color/colorPrimary"
+            android:layout_margin="10dp"
+            android:textSize="17sp"
+            />
+
+        <TextView
+            android:id="@+id/loadMoreIncomingPackages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_more"
+            android:layout_below="@id/layout_packageHistory"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/primaryTextColor"
+            android:fontFamily="sans-serif-light"
+            android:layout_margin="10dp"
+            android:textSize="17sp"
+            />
+
+
+
+        <RelativeLayout
+            android:id="@+id/layout_IncomingPackages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/incomingPackagesHeader">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview_incomingPackages"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="10dp"
+                >
+
+            </android.support.v7.widget.RecyclerView>
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+</ScrollView>

@@ -1,121 +1,99 @@
 package com.shipwebsource.mywebsource;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
-import com.shipwebsource.mywebsource.Helpers.MenuViewPager;
+import com.shipwebsource.mywebsource.Adaptors.GenericListStringRecyclerViewAdaptor;
+import com.shipwebsource.mywebsource.Blueprints.PackageHistoryObject;
+import com.shipwebsource.mywebsource.Helpers.DividerItemDecoration;
 import com.shipwebsource.mywebsource.Helpers.SettingsBuddy;
 
-public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity
 {
 
     private TextView loggedInUser;
     private SettingsBuddy settingsBuddy;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private MenuViewPager adapter;
+
+    private GenericListStringRecyclerViewAdaptor adaptor;
+    private RecyclerView recyclerViewPackageHistory;
+    private LinearLayoutManager linearLayoutManager;
+    private ArrayList<PackageHistoryObject> dummyData;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        //Adding the tabs using addTab() method
-        tabLayout.addTab(tabLayout.newTab().setText("Package history"));
-        tabLayout.addTab(tabLayout.newTab().setText("Incoming packages"));
-        tabLayout.addTab(tabLayout.newTab().setText("Pre-alerts"));
-
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-        //Initializing viewPager
-        viewPager = (ViewPager) findViewById(R.id.pager);
-
-        //Creating our pager adapter
-        adapter = new MenuViewPager(getSupportFragmentManager(), getApplicationContext());
-
-        //Adding adapter to pager
-        viewPager.setAdapter(adapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
-
-
-        //Adding onTabSelectedListener to swipe views
-        tabLayout.setOnTabSelectedListener(this);
 
 
         settingsBuddy = SettingsBuddy.getInstance(getApplicationContext());
         String name = settingsBuddy.getData("Name");
         String accountNumber = settingsBuddy.getData("AccountNumber");
 
-        loggedInUser = (TextView) findViewById(R.id.titleLoggedInUser);
-        loggedInUser.setText(name+" ("+accountNumber+")");
+        recyclerViewPackageHistory = (RecyclerView) findViewById(R.id.recyclerview_packageHistory);
+        dummyData = new ArrayList<>();
+        recyclerViewPackageHistory.setHasFixedSize(true);
+        linearLayoutManager = new LinearLayoutManager(this);
+
+        Drawable dividerDrawable = ContextCompat.getDrawable(this, R.drawable.divider);
+        RecyclerView.ItemDecoration dividerItemDecoration = new DividerItemDecoration(dividerDrawable);
+        recyclerViewPackageHistory.addItemDecoration(dividerItemDecoration);
+
+        recyclerViewPackageHistory.setLayoutManager(linearLayoutManager);
+        adaptor = new GenericListStringRecyclerViewAdaptor(dummyData);
+        generateDummyData();
+        recyclerViewPackageHistory.setAdapter(adaptor);
 
 
-    }
-
-    @Override
-    public void onTabSelected(TabLayout.Tab tab)
-    {
-        viewPager.setCurrentItem(tab.getPosition());
-        int tabNumber = tab.getPosition();
-        switch (tabNumber)
-        {
-            case 0:
-//                tabLayout.getTabAt(tabNumber).setIcon(R.drawable.ic_default_active);
-                tabLayout.getTabAt(tabNumber).setText("Package history");
-                Fragment a = ((MenuViewPager)viewPager.getAdapter()).getFragment(0);
-                if (a != null)
-                {
-                    Bundle args = new Bundle();
-                    a.onResume();
-                }
-                break;
-
-            case 1:
-                tabLayout.getTabAt(tabNumber).setText("Incoming packages");
-                Fragment b = ((MenuViewPager)viewPager.getAdapter()).getFragment(1);
-                if (b != null)
-                {
-                    b.onResume();
-                }
-                break;
-
-            case 2:
-                tabLayout.getTabAt(tabNumber).setText("Pre-alerts");
-                Fragment c = ((MenuViewPager)viewPager.getAdapter()).getFragment(2);
-                if (c != null)
-                {
-                    c.onResume();
-                }
-                break;
-
-
-        }
-    }
-
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
 
     }
 
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
 
-    }
 
     @Override
     protected void onResume()
     {
         super.onResume();
-        if (viewPager != null)
-        {
-            viewPager.setCurrentItem(0);
-        }
+
+    }
+
+    private void generateDummyData()
+    {
+
+        PackageHistoryObject object = new PackageHistoryObject("HAWB0000000029510012", "Kitchen Utensils", "Amazon", "100.50", "Delivered");
+        dummyData.add(object);
+
+        PackageHistoryObject object2 = new PackageHistoryObject("HAWB0000000029510013", "Apparel", "EBAY", "80.30", "Delivered");
+        dummyData.add(object2);
+
+        PackageHistoryObject object3 = new PackageHistoryObject("HAWB0000000029510014", "Toys", "USPS", "250.99", "Delivered");
+        dummyData.add(object3);
+
+        PackageHistoryObject object4 = new PackageHistoryObject("HAWB0000000029510015", "Video Game", "FedEx", "41.75", "Delivered");
+        dummyData.add(object4);
+
+        PackageHistoryObject object5 = new PackageHistoryObject("HAWB0000000029510016", "Laptop/ TV stick", "DHL", "104.50", "Delivered");
+        dummyData.add(object5);
+
+        PackageHistoryObject object6 = new PackageHistoryObject("HAWB0000000029510017", "Cell Parts", "Canada Post", "53.17", "Delivered");
+        dummyData.add(object6);
+
+        PackageHistoryObject object7 = new PackageHistoryObject("HAWB0000000029510018", "Book/ Home Accessories", "UPS", "1018", "Delivered");
+        dummyData.add(object7);
+
+
+
     }
 }
