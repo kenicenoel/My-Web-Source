@@ -3,29 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="10dp"
     android:background="@color/white"
     >
 
 
     <TextView
         android:id="@+id/textview_findMyLocationHeader"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Request a pickup"
         android:textColor="@color/colorPrimary"
+        android:background="@color/yellow"
         android:textSize="16sp"
+        android:padding="10dp"
         android:fontFamily="sans-serif-medium"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
         android:textAllCaps="true"
         android:layout_marginBottom="10dp"/>
 
     <ImageView
-        android:id="@+id/image_shuttleBadge"
-        android:layout_width="200dp"
+        android:id="@+id/image_shuttleDriver"
+        android:layout_width="wrap_content"
         android:layout_height="200dp"
-        android:src="@drawable/ic_web"
+        android:src="@drawable/shuttle_driver"
         android:layout_below="@id/textview_findMyLocationHeader"
         android:layout_centerHorizontal="true"/>
 
@@ -37,7 +36,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/image_shuttleBadge"
+        android:layout_below="@id/image_shuttleDriver"
         app:cardCornerRadius="5dp">
 
         <RelativeLayout
