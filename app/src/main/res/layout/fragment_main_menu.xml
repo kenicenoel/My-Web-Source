@@ -124,9 +124,11 @@
                     android:id="@+id/recyclerview_packageHistory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
                     android:padding="10dp"
-                    >
+                    tools:listitem="@layout/layout_recyclerview_list"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true">
 
                 </android.support.v7.widget.RecyclerView>
 
@@ -170,9 +172,7 @@
                 android:id="@+id/layout_IncomingPackages"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/incomingPackagesHeader"
-
-                android:background="@color/white">
+                android:layout_below="@id/incomingPackagesHeader">
 
                 <RelativeLayout
                     android:id="@+id/layout_emptyView_incomingPackages"
@@ -180,22 +180,18 @@
                     android:layout_height="wrap_content"
                     android:visibility="gone">
 
-                    <ImageView
-                        android:id="@+id/emptyView_shuttleDriver"
-                        android:layout_width="wrap_content"
-                        android:layout_height="150dp"
-                        android:src="@drawable/shuttle_driver_wink"
-                        android:layout_centerHorizontal="true"/>
 
                     <TextView
                         android:id="@+id/emptyView_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
+                        android:drawableTop="@drawable/ic_sad"
+                        android:drawablePadding="10dp"
                         android:text="You don't have any incoming packages"
                         android:textSize="15sp"
                         android:textColor="@color/greyv2"
-                        android:layout_below="@id/emptyView_shuttleDriver" />
+                        />
 
                     <Button
                         android:layout_width="200dp"
@@ -218,7 +214,8 @@
                     android:padding="10dp"
                     android:layout_below="@+id/layout_emptyView_incomingPackages"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true">
+                    android:layout_alignParentStart="true"
+                    tools:listitem="@layout/layout_recyclerview_list">
 
                 </android.support.v7.widget.RecyclerView>
 

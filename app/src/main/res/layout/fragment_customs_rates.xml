@@ -5,31 +5,99 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context="com.shipwebsource.mywebsource.MainActivity">
+    android:background="@color/whiteGrey"
+    tools:context="com.shipwebsource.mywebsource.CustomsRatesFragment">
 
     <TextView
         android:id="@+id/textview_customsRates"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Customs &amp; Excise rates"
-        android:textColor="@color/colorPrimary"
-        android:textSize="16sp"
-        android:fontFamily="sans-serif-medium"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:textAllCaps="true"
-        android:layout_marginBottom="10dp"/>
-
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="17sp"
-        android:maxWidth="300dp"
-        android:padding="20dp"
+        android:padding="10dp"
+        android:text="Customs &amp; Excise rates"
+        android:background="@color/yellow"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif-medium"
+        android:textAllCaps="true"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/textview_customsRates"
-        android:layout_marginTop="15sp"
-        android:text="Expecting something? These are the duty and VAT rates per item category as specified by the laws of the Republic of Trinidad &amp; Tobago"/>
+        android:padding="10dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/header_DutyFreeItems"
+                android:drawableLeft="@drawable/ic_item"
+                android:drawablePadding="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:layout_marginTop="15sp"
+                android:fontFamily="sans-serif-regular"
+                android:gravity="center_vertical"
+                android:textColor="@color/primaryTextColor"
+                android:text="Duty free items"
+                />
+
+
+
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerview_dutyFree"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layoutManager="LinearLayoutManager"
+                        android:layout_below="@id/header_DutyFreeItems"
+                        tools:context="com.shipwebsource.mywebsource.CustomsRateFragment"
+                        tools:listitem="@layout/layout_customs_rates_list"
+                        >
+
+                    </android.support.v7.widget.RecyclerView>
+
+
+
+            <TextView
+                android:id="@+id/header_DutyAndVatItems"
+                android:drawableLeft="@drawable/ic_item"
+                android:layout_below="@id/recyclerview_dutyFree"
+                android:drawablePadding="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:layout_marginTop="15sp"
+                android:fontFamily="sans-serif-regular"
+                android:gravity="center_vertical"
+                android:textColor="@color/primaryTextColor"
+                android:text="Items carrying duty and VAT"
+                />
+
+
+
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerview_dutyAndVat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/header_DutyAndVatItems"
+                        app:layoutManager="LinearLayoutManager"
+                        tools:context="com.shipwebsource.mywebsource.CustomsRateFragment"
+                        tools:listitem="@layout/layout_customs_rates_list">
+
+                    </android.support.v7.widget.RecyclerView>
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+
 
 
 

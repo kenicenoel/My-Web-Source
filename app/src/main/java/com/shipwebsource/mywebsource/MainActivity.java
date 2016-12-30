@@ -28,11 +28,11 @@ public class MainActivity extends AppCompatActivity
 
 
         settingsBuddy = SettingsBuddy.getInstance(getApplicationContext());
-        loggedInUser = (TextView) findViewById(R.id.textview_loggedInUser);
+//        loggedInUser = (TextView) findViewById(R.id.textview_loggedInUser);
         String name = settingsBuddy.getData("Name");
         String accountNumber = settingsBuddy.getData("AccountNumber");
 
-        loggedInUser.setText("Hello, "+name);
+//        loggedInUser.setText("Hello, "+name);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         MainMenuFragment mainMenuFragment = new MainMenuFragment();

@@ -2,12 +2,10 @@ package com.shipwebsource.mywebsource;
 
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,7 +16,6 @@ import android.widget.TextView;
 
 import com.shipwebsource.mywebsource.Adaptors.GenericListStringRecyclerViewAdaptor;
 import com.shipwebsource.mywebsource.Blueprints.PackageObject;
-import com.shipwebsource.mywebsource.Helpers.DividerItemDecoration;
 
 import java.util.ArrayList;
 
@@ -96,9 +93,9 @@ public class MainMenuFragment extends Fragment
         recyclerViewPackageHistory.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(getContext());
 
-        Drawable dividerDrawable = ContextCompat.getDrawable(getContext(), R.drawable.divider);
-        RecyclerView.ItemDecoration dividerItemDecoration = new DividerItemDecoration(dividerDrawable);
-        recyclerViewPackageHistory.addItemDecoration(dividerItemDecoration);
+//        Drawable dividerDrawable = ContextCompat.getDrawable(getContext(), R.drawable.divider);
+//        RecyclerView.ItemDecoration dividerItemDecoration = new DividerItemDecoration(dividerDrawable);
+//        recyclerViewPackageHistory.addItemDecoration(dividerItemDecoration);
 
         recyclerViewPackageHistory.setLayoutManager(linearLayoutManager);
         adaptor = new GenericListStringRecyclerViewAdaptor(history);

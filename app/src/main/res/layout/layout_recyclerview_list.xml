@@ -2,79 +2,95 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:scrollbars="horizontal"
-    android:padding="5dp">
+    android:scrollbars="horizontal">
 
-    <ImageView
-        android:id="@+id/layout_shipper_icon"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:src="@drawable/other"/>
+        app:cardCornerRadius="5dp"
+        android:layout_margin="3dp">
 
-    <TextView
-        android:id="@+id/layout_packageNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HAWB1234567890000000"
-        android:layout_toRightOf="@id/layout_shipper_icon"
-        android:textColor="@color/primaryTextColor"
-        android:textSize="18sp"
-        android:fontFamily="sans-serif-regular"
-        android:layout_marginLeft="5dp"
-        android:textIsSelectable="true"
-        android:paddingRight="5dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
 
-    <TextView
-        android:id="@+id/layout_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/layout_packageNumber"
-        android:layout_toRightOf="@id/layout_shipper_icon"
-        android:textColor="@color/greyv2"
-        android:text="Toys"
-        android:textSize="18sp"
-        android:layout_marginLeft="5dp"
-        android:paddingRight="15dp"/>
+            <ImageView
+                android:id="@+id/layout_shipper_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/other"/>
 
-    <TextView
-        android:id="@+id/layout_shipper"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/layout_description"
-        android:layout_toRightOf="@id/layout_shipper_icon"
-        android:textColor="@color/greyv2"
-        android:text="Amazon"
-        android:textSize="18sp"
-        android:layout_marginLeft="5dp"
-        android:textAllCaps="true"
-        android:paddingRight="5dp"/>
+            <TextView
+                android:id="@+id/layout_packageNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HAWB1234567890000000"
+                android:layout_toRightOf="@id/layout_shipper_icon"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-regular"
+                android:layout_marginLeft="5dp"
+                android:textIsSelectable="true"
+                android:paddingRight="5dp"/>
 
-    <TextView
-        android:id="@+id/layout_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_alignParentRight="true"
-        android:textColor="@color/grey"
-        android:text="$170.12"
-        android:textSize="18sp"
-        android:textIsSelectable="true"
-        android:paddingRight="3dp"/>
+            <TextView
+                android:id="@+id/layout_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_packageNumber"
+                android:layout_toRightOf="@id/layout_shipper_icon"
+                android:textColor="@color/greyv2"
+                android:text="Toys"
+                android:textSize="16sp"
+                android:layout_marginLeft="5dp"
+              />
 
-    <TextView
-        android:id="@+id/layout_packageStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/layout_description"
-        android:textColor="@color/colorPrimary"
-        android:fontFamily="sans-serif-regular"
-        android:text="Delivered"
-        android:textSize="18sp"
-        android:paddingRight="3dp"/>
+            <TextView
+                android:id="@+id/layout_shipper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_description"
+                android:layout_toRightOf="@id/layout_shipper_icon"
+                android:textColor="@color/greyv2"
+                android:text="Amazon"
+                android:textSize="16sp"
+                android:layout_marginLeft="5dp"
+                android:textAllCaps="true"
+                android:paddingRight="5dp"/>
+
+            <TextView
+                android:id="@+id/layout_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/grey"
+                android:text="$170.12"
+                android:textSize="16sp"
+                android:textIsSelectable="true"
+                android:paddingRight="3dp"/>
+
+            <TextView
+                android:id="@+id/layout_packageStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/layout_description"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="sans-serif-regular"
+                android:text="Delivered"
+                android:textSize="16sp"
+                android:paddingRight="3dp"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
 
 
 
