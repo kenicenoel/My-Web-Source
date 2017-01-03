@@ -34,7 +34,7 @@
 
     <color name="grey">#666666</color>
     <color name="greyv2">#888888</color>
-    <color name="whiteGrey">#EEEEEE</color>
+    <color name="whiteGrey">#F3F3F4</color>
     <color name="clouds">#ecf0f1</color>
     <color name="emerald">#2ecc71</color>
     <color name="greenA200">#69F0AE</color>
@@ -46,7 +46,6 @@
     <color name="materialPink">#E91E63</color>
     <color name="materialDarkBlue">#2B5A84</color>
     <color name="materialLightBlue">#1BB1E4</color>
-
 
 
 </resources>

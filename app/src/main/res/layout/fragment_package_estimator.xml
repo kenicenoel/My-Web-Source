@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whiteGrey"
+    tools:context="com.shipwebsource.mywebsource.PackageEstimatorFragment">
+
+    <TextView
+        android:id="@+id/textview_PackageEstimatorHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Package landing cost estimator"
+        android:gravity="center_vertical"
+        android:drawablePadding="5dp"
+        android:background="@color/yellow"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif-medium"
+        android:textAllCaps="true"
+        />
+
+
+
+        <RelativeLayout
+            android:id="@+id/layout_estimator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/textview_PackageEstimatorHeader">
+
+            <TextView
+                android:id="@+id/textview_itemValue"
+                android:drawableLeft="@drawable/ic_attach_money_black_24dp"
+                android:drawablePadding="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:layout_marginTop="15sp"
+                android:fontFamily="sans-serif-regular"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorPrimary"
+                android:text="What's the total cost of your package?"
+                />
+
+            <EditText
+                android:id="@+id/estimator_value"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@drawable/background_edit_text"
+                android:layout_below="@+id/textview_itemValue"
+                android:layout_marginBottom="20dp"/>
+
+
+            <TextView
+                android:id="@+id/textview_itemValueInTTD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/estimator_value"
+                android:layout_below="@id/textview_itemValue"
+                android:padding="10dp"
+                android:textSize="20sp"
+                android:text="0 TTD" />
+
+
+
+            <TextView
+                android:id="@+id/textview_itemWeight"
+                android:drawableLeft="@drawable/ic_settings_overscan_black_24dp"
+                android:drawablePadding="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:layout_marginTop="15sp"
+                android:fontFamily="sans-serif-regular"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorPrimary"
+                android:layout_below="@id/estimator_value"
+                android:text="How much does your package weigh?"
+                />
+
+
+            <Spinner
+                android:id="@+id/spinner_estimatorValue"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:padding="5dp"
+                android:layout_marginBottom="20dp"
+                android:layout_below="@id/textview_itemWeight"/>
+
+
+            <TextView
+                android:id="@+id/textview_itemWeightInKilo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/spinner_estimatorValue"
+                android:layout_below="@id/textview_itemWeight"
+                android:padding="10dp"
+                android:textSize="17sp"
+                android:text="0 Kg" />
+
+
+
+            <TextView
+                android:id="@+id/textview_itemCategory"
+                android:drawableLeft="@drawable/ic_shopping_basket_black_24dp"
+                android:drawablePadding="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:layout_marginTop="15sp"
+                android:fontFamily="sans-serif-regular"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorPrimary"
+                android:layout_below="@id/spinner_estimatorValue"
+                android:text="What kind of item is it?"
+                />
+
+
+            <Spinner
+                android:id="@+id/spinner_itemCategory"
+                android:layout_width="300dp"
+                android:layout_height="35dp"
+                android:padding="5dp"
+                android:layout_below="@id/textview_itemCategory"/>
+
+
+
+
+
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/white"
+        android:layout_alignParentBottom="true"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/primaryTextColor"
+            android:padding="5dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Estimated landing cost including duty and taxes"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
+            android:text="$00. 00 TTD"
+            android:textSize="40sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginBottom="10dp"
+            />
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+</RelativeLayout>

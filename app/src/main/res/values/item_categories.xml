@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="item_categories">
+        <item>Choose one</item>
+        <item>Alarm (Motor Vehicle)</item>
+        <item>Album</item>
+        <item>Amplifier</item>
+        <item>Apparel (All clothing)</item>
+        <item>Appliances</item>
+        <item>Baby Play Pen</item>
+        <item>Bag</item>
+        <item>Bed Linen</item>
+        <item>Bicycle</item>
+        <item>Blank DVDs &amp; CDs</item>
+        <item>Bluetooth Headset</item>
+        <item>Books</item>
+        <item>Calculator</item>
+        <item>Camera</item>
+        <item>Camera Lens</item>
+        <item>Candles</item>
+        <item>Car Parts</item>
+        <item>CD ROM (Software)</item>
+        <item>CDs</item>
+        <item>CDs (Music)</item>
+        <item>Cell Phones &amp; Accessories</item>
+        <item>Christmas Lights</item>
+        <item>Christmas Tree (Artificial)</item>
+        <item>Coffee</item>
+        <item>Computer Parts</item>
+        <item>Computer Systems</item>
+        <item>Computer Tower</item>
+        <item>Computer Tower Case</item>
+        <item>Cosmetics</item>
+        <item>Costume Jewellery</item>
+        <item>Digital Cameras</item>
+        <item>Diving Gear</item>
+        <item>DVDs</item>
+        <item>Electronics</item>
+        <item>Envelopes</item>
+        <item>Ethernet Hub</item>
+        <item>Fax and Line Modems</item>
+        <item>Food Supplies</item>
+        <item>Furniture</item>
+        <item>Game Accessories</item>
+        <item>Hand Held Tools</item>
+        <item>Head Lights (Motor Vehicle)</item>
+        <item>Headphones</item>
+        <item>Ink Cartridges</item>
+        <item>iPad (without sim slot) / Tablet PCs</item>
+        <item>iPad(with sim slot)</item>
+        <item>Ipods / Musical Storage Devices</item>
+        <item>Jewellery</item>
+        <item>Kitchen Accessories</item>
+        <item>Lab Ware</item>
+        <item>Laptops</item>
+        <item>Medical Apparel</item>
+        <item>Monitor (Computer)</item>
+        <item>Monitor (Display)</item>
+        <item>Mother Boards</item>
+        <item>Musical Equipment</item>
+        <item>Pet Food</item>
+        <item>Plumbing</item>
+        <item>Pressure Washer</item>
+        <item>Printer (3 in one)</item>
+        <item>Printer (none 3-in-one)</item>
+        <item>Printer Cartridge</item>
+        <item>Processors</item>
+        <item>Projector Screen</item>
+        <item>Remote Control</item>
+        <item>Router</item>
+        <item>Safety Helmet</item>
+        <item>Shoes (walking or casual)</item>
+        <item>Speakers</item>
+        <item>Sunglasses</item>
+        <item>Toys</item>
+        <item>Video Games</item>
+        <item>Vitamins &amp; Food Supplements</item>
+        <item>Watches</item>
+
+    </string-array>
+
+
+
+
+</resources>

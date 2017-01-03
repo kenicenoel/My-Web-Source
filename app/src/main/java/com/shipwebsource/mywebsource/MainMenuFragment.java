@@ -38,6 +38,7 @@ public class MainMenuFragment extends Fragment
 
     private TextView tagPreAlert;
     private TextView tagCustomsRates;
+    private TextView tagPackageEstimator;
     private TextView loggedInUser;
 
 
@@ -83,6 +84,7 @@ public class MainMenuFragment extends Fragment
 
         tagPreAlert = (TextView) view.findViewById(R.id.tag_pre_alerts);
         tagCustomsRates = (TextView) view.findViewById(R.id.tag_customs_rates);
+        tagPackageEstimator = (TextView) view.findViewById(R.id.tag_package_estimator);
 
         recyclerViewPackageHistory = (RecyclerView) view.findViewById(R.id.recyclerview_packageHistory);
         recyclerViewIncomingPackages = (RecyclerView) view.findViewById(R.id.recyclerview_incomingPackages);
@@ -148,6 +150,20 @@ public class MainMenuFragment extends Fragment
 
             }
         });
+
+
+        tagPackageEstimator.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                PackageEstimatorFragment packageEstimatorFragment = new PackageEstimatorFragment();
+                FragmentTransaction fragmentTransaction = setupFragmentTransactionWithSlideAnimations();
+                fragmentTransaction.replace(R.id.masterSinglePane, packageEstimatorFragment, "Package Estimator").addToBackStack(TAG);
+                fragmentTransaction.commit();
+            }
+        });
+
 
         tagCustomsRates.setOnClickListener(new View.OnClickListener()
         {
