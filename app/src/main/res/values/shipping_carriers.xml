@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="shippers">
+        <item>Choose one</item>
+        <item>Amazon</item>
+        <item>DHL</item>
+        <item>FedEx</item>
+        <item>Lasership</item>
+        <item>UPS</item>
+        <item>USPS</item>
+        <item>Warehouse Drop-Off</item>
+
+    </string-array>
+
+
+
+
+</resources>

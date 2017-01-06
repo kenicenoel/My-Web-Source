@@ -1,13 +1,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/edit_name"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
+    android:background="@color/white"
+    android:padding="15dp"
     android:orientation="vertical">
 
     <ScrollView
         android:id="@+id/scrollview_preAlert"
+        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -16,13 +18,17 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp">
 
+
+
             <TextView
                 android:id="@+id/label_supplier"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Who's the supplier?"
-                android:textColor="@color/colorPrimary"/>
+                android:text="Name of supplier"
+                android:layout_marginBottom="5dp"
+
+                android:textColor="@color/primaryTextColor"/>
 
             <EditText
                 android:id="@+id/et_supplier"
@@ -30,38 +36,19 @@
                 android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
                 android:layout_below="@id/label_supplier"
-
-                android:inputType="text" />
-
-            <TextView
-                android:id="@+id/label_shipper"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/et_supplier"
-                android:text="What company is shipping your item?"
-                android:textColor="@color/colorPrimary"/>
-
-            <Spinner
-                android:id="@+id/spinner_shipper"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/label_shipper"
-                android:padding="10dp"
+                android:background="@drawable/background_edit_text_grey"
                 android:layout_marginBottom="15dp"
-                tools:listitem="@android:layout/simple_dropdown_item_1line"
-                tools:context="com.shipwebsource.mywebsource.PreAlertDialogFragment"
-                android:inputType="text"
-                />
-
-
+                android:padding="5dp"
+                android:inputType="text" />
 
             <TextView
                 android:id="@+id/label_trackingNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/spinner_shipper"
-                android:text="What's the tracking number?"
-                android:textColor="@color/colorPrimary"/>
+                android:layout_below="@id/et_supplier"
+                android:text="Tracking number"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/primaryTextColor"/>
 
             <EditText
                 android:id="@+id/et_trackingNumber"
@@ -69,16 +56,55 @@
                 android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
                 android:layout_below="@id/label_trackingNumber"
+                android:background="@drawable/background_edit_text_grey"
+                android:layout_marginBottom="15dp"
+                android:padding="5dp"
                 android:inputType="text" />
+
+
+
+            <TextView
+                android:id="@+id/label_shipper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_trackingNumber"
+                android:text="Shipping company"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/primaryTextColor"/>
+
+            <Spinner
+                android:id="@+id/spinner_shipper"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/label_shipper"
+                android:padding="15dp"
+                android:layout_marginBottom="15dp"
+                tools:context="com.shipwebsource.mywebsource.PreAlertDialogFragment"
+                android:inputType="text"
+                />
+
+            <TextView
+                android:id="@+id/textview_spinner_shipper_moreDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/spinner_shipper"
+                android:layout_below="@id/label_shipper"
+                android:padding="10dp"
+                android:textSize="15sp"
+                android:textColor="@color/colorPrimary"
+                android:text="" />
+
+
 
 
             <TextView
                 android:id="@+id/label_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="What kind of item is it?"
-                android:textColor="@color/colorPrimary"
-                android:layout_below="@id/et_trackingNumber"/>
+                android:text="Item type"
+                android:textColor="@color/primaryTextColor"
+                android:layout_marginBottom="5dp"
+                android:layout_below="@id/spinner_shipper"/>
 
             <Spinner
                 android:id="@+id/spinner_category"
@@ -86,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
                 android:layout_below="@id/label_category"
-
+                android:padding="15dp"
                 android:layout_marginBottom="15dp"
                 tools:listitem="@android:layout/simple_dropdown_item_1line"
                 tools:context="com.shipwebsource.mywebsource.PreAlertDialogFragment"
@@ -99,17 +125,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/spinner_category"
-                android:text="How much did it cost? (including shipping)"
-                android:textColor="@color/colorPrimary"/>
+                android:text="Package value (with shipping)"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/primaryTextColor"/>
 
             <EditText
                 android:id="@+id/et_value"
-                android:layout_width="200dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
                 android:layout_below="@id/label_value"
                 android:inputType="numberDecimal"
+                android:background="@drawable/background_edit_text_grey"
+                android:layout_marginBottom="15dp"
+                android:padding="5dp"
                 />
+
+            <TextView
+                android:id="@+id/textview_preAlert_itemValueInTTD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/et_value"
+                android:layout_below="@id/label_value"
+                android:padding="5dp"
+                android:textSize="17sp"
+                android:textColor="@color/colorPrimary"
+                android:text="0 TTD" />
 
 
         </RelativeLayout>

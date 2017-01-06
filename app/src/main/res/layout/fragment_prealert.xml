@@ -35,11 +35,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textview_managePreAlerts"
-                android:text="Expecting something? Let us know. It'll help us speed things up a bit."
+                android:text="Pre-Alerting a package tells us to expect a package from you and this help us clear your package through Customs efficiently and accurately and this means, you'll get your packages even faster"
                 android:textSize="17sp"
                 android:padding="20dp"
                 android:fontFamily="sans-serif-light"
                 android:layout_centerHorizontal="true"
+                android:textColor="@color/primaryTextColor"
                 />
 
 

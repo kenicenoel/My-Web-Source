@@ -138,6 +138,20 @@ public class MainMenuFragment extends Fragment
             }
         });
 
+        footerGetHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GetHelpFragment getHelpFragment = new GetHelpFragment();
+
+                FragmentTransaction fragmentTransaction = setupFragmentTransactionWithSlideAnimations();
+                fragmentTransaction.replace(R.id.masterSinglePane, getHelpFragment, "Get Help").addToBackStack(TAG);
+                fragmentTransaction.commit();
+
+
+
+            }
+        });
+
         tagPreAlert.setOnClickListener(new View.OnClickListener()
         {
             @Override

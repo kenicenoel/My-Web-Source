@@ -5,7 +5,7 @@
     <color name="colorPrimary">#2198F3</color>
     <color name="colorPrimaryLight">#4BABF4</color>
     <color name="colorPrimaryDark">#085996</color>
-    <color name="primaryTextColor">#2F2933</color>
+    <color name="primaryTextColor">#000000</color>
     <color name="money">#B5E655</color>
     <color name="teal">#04BFBF</color>
     <color name="translucent_black">#40000000</color>

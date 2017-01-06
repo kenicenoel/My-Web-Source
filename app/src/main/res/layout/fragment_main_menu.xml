@@ -226,7 +226,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/layout_IncomingPackages"
-                android:background="@color/headerYellow">
+                android:background="@color/yellow">
 
                 <TextView
                     android:id="@+id/footer_callUs"
@@ -241,7 +241,7 @@
                     android:textColor="@color/white"
                     android:textSize="19sp"
                     android:gravity="center_vertical"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="sans-serif-regular"
                     android:layout_centerHorizontal="true"
                     android:padding="10dp"
                     android:clickable="true"
@@ -263,7 +263,7 @@
                     android:textColor="@color/white"
                     android:textSize="19sp"
                     android:gravity="center_vertical"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="sans-serif-regular"
                     android:padding="10dp"
                     />
 
@@ -282,7 +282,7 @@
                     android:textColor="@color/white"
                     android:textSize="19sp"
                     android:gravity="center_vertical"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="sans-serif-regular"
                     android:padding="10dp"
                     />
 
@@ -302,7 +302,7 @@
                     android:textColor="@color/white"
                     android:textSize="19sp"
                     android:gravity="center_vertical"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="sans-serif-regular"
                     android:padding="10dp"
                     />
 

@@ -27,10 +27,9 @@
 
         <RelativeLayout
             android:id="@+id/layout_estimator"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
             android:layout_below="@id/textview_PackageEstimatorHeader">
 
             <TextView
@@ -39,23 +38,25 @@
                 android:drawablePadding="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="5dp"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
                 android:layout_marginTop="15sp"
                 android:fontFamily="sans-serif-regular"
                 android:gravity="center_vertical"
-                android:textColor="@color/colorPrimary"
-                android:text="What's the total cost of your package?"
+                android:textColor="@color/primaryTextColor"
+                android:text="Package Value"
                 />
 
             <EditText
                 android:id="@+id/estimator_value"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:padding="10dp"
                 android:background="@drawable/background_edit_text"
                 android:layout_below="@+id/textview_itemValue"
+                android:inputType="numberDecimal"
                 android:layout_marginBottom="20dp"/>
 
 
@@ -66,7 +67,7 @@
                 android:layout_toRightOf="@id/estimator_value"
                 android:layout_below="@id/textview_itemValue"
                 android:padding="10dp"
-                android:textSize="20sp"
+                android:textSize="17sp"
                 android:text="0 TTD" />
 
 
@@ -75,17 +76,16 @@
                 android:id="@+id/textview_itemWeight"
                 android:drawableLeft="@drawable/ic_settings_overscan_black_24dp"
                 android:drawablePadding="10dp"
-                android:layout_centerHorizontal="true"
                 android:layout_marginLeft="10dp"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
                 android:layout_marginTop="15sp"
                 android:fontFamily="sans-serif-regular"
                 android:gravity="center_vertical"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/primaryTextColor"
                 android:layout_below="@id/estimator_value"
-                android:text="How much does your package weigh?"
+                android:text="Package Weight"
                 />
 
 
@@ -93,7 +93,8 @@
                 android:id="@+id/spinner_estimatorValue"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
-                android:padding="5dp"
+                android:padding="10dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginBottom="20dp"
                 android:layout_below="@id/textview_itemWeight"/>
 
@@ -114,18 +115,18 @@
                 android:id="@+id/textview_itemCategory"
                 android:drawableLeft="@drawable/ic_shopping_basket_black_24dp"
                 android:drawablePadding="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_centerHorizontal="true"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
-                android:layout_marginTop="15sp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="sans-serif-regular"
                 android:gravity="center_vertical"
-                android:textColor="@color/colorPrimary"
-                android:layout_below="@id/spinner_estimatorValue"
-                android:text="What kind of item is it?"
-                />
+                android:textColor="@color/primaryTextColor"
+                android:text="Item category"
+                android:layout_below="@+id/spinner_estimatorValue"
+                android:layout_alignLeft="@+id/spinner_itemCategory"
+                android:layout_alignStart="@+id/spinner_itemCategory" />
+
 
 
             <Spinner
@@ -133,10 +134,21 @@
                 android:layout_width="300dp"
                 android:layout_height="35dp"
                 android:padding="5dp"
+                android:layout_marginLeft="10dp"
                 android:layout_below="@id/textview_itemCategory"/>
 
 
-
+            <Button
+                android:id="@+id/button_performEstimation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Calculate"
+                android:background="@drawable/background_button"
+                android:textColor="@color/white"
+                android:layout_below="@id/spinner_itemCategory"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"/>
 
 
         </RelativeLayout>
@@ -158,6 +170,7 @@
             android:text="Estimated landing cost including duty and taxes"/>
 
         <TextView
+            android:id="@+id/textview_totalEstimate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"

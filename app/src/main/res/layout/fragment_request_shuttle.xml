@@ -11,7 +11,7 @@
         android:id="@+id/textview_findMyLocationHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Request a pickup"
+        android:text="Free shuttle service"
         android:textColor="@color/colorPrimary"
         android:background="@color/yellow"
         android:textSize="16sp"
@@ -33,8 +33,9 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/locationCard"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:padding="5dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/image_shuttleDriver"
         app:cardCornerRadius="5dp">
