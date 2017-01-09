@@ -109,6 +109,7 @@ public class RequestShuttleFragment extends Fragment implements OnMapReadyCallba
                 startNavigation();
             }
         });
+
     }
 
 

@@ -35,7 +35,7 @@ public class PreAlertDialogFragment extends DialogFragment
     private boolean categoryChosen;
     private String selectedCategory;
     private boolean shipperChosen;
-    private String selectedShipper;
+    private String selectedShipper = "";
 
     private String trackingNumber;
 
@@ -204,7 +204,7 @@ public class PreAlertDialogFragment extends DialogFragment
                 if (!str.equals("Choose one"))
                 {
                     selectedShipper = str;
-                    if (selectedShipper.equals("FedEx") && !trackingNumber.isEmpty())
+                    if (selectedShipper.equals("FedEx") && trackingNumber.length() > 5)
                     {
                         switch (trackingNumber.length())
                         {

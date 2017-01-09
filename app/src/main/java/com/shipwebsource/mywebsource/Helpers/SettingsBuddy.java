@@ -50,6 +50,11 @@ public class SettingsBuddy
     }
 
 
+    public void clearData()
+    {
 
+            SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
+            prefsEditor.clear().commit();
 
+    }
 }

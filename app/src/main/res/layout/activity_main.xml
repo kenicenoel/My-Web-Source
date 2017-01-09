@@ -11,17 +11,7 @@
     <include layout="@layout/toolbar"
         android:id="@+id/toolbar" />
 
-    <!--<TextView-->
-        <!--android:id="@+id/textview_loggedInUser"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/toolbar"-->
-        <!--android:text="Hello"-->
-        <!--android:textColor="@color/colorPrimary"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:textSize="17sp"-->
-        <!--android:layout_marginBottom="5dp"-->
-        <!--android:layout_marginTop="15sp" />-->
+
 
     <FrameLayout
         android:id="@+id/masterSinglePane"
