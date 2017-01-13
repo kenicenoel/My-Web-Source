@@ -2,10 +2,12 @@ package com.shipwebsource.mywebsource;
 
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,7 +16,9 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.shipwebsource.mywebsource.Adaptors.FeaturedCardsRecyclerviewAdaptor;
 import com.shipwebsource.mywebsource.Adaptors.GenericListStringRecyclerViewAdaptor;
+import com.shipwebsource.mywebsource.Blueprints.FeaturedCard;
 import com.shipwebsource.mywebsource.Blueprints.PackageObject;
 
 import java.util.ArrayList;
@@ -24,11 +28,14 @@ public class MainMenuFragment extends Fragment
 {
     private final String TAG = MainMenuFragment.class.getSimpleName();
     private GenericListStringRecyclerViewAdaptor adaptor;
+    private FeaturedCardsRecyclerviewAdaptor cardsRecyclerviewAdaptor;
     private RecyclerView recyclerViewPackageHistory;
     private RecyclerView recyclerViewIncomingPackages;
+    private RecyclerView recyclerViewFeaturedCards;
     private LinearLayoutManager linearLayoutManager;
     private ArrayList<PackageObject> history;
     private ArrayList<PackageObject> incoming;
+    private ArrayList<FeaturedCard> featuredCards;
     private RelativeLayout incomingPackagesRelativeLayout;
 
     private TextView footerCallUs;
@@ -40,6 +47,8 @@ public class MainMenuFragment extends Fragment
     private TextView tagCustomsRates;
     private TextView tagPackageEstimator;
     private TextView loggedInUser;
+
+    private GridLayoutManager gridLayoutManager;
 
 
     private static final String WEBSOURCE = "tel:18682854932";
@@ -88,6 +97,7 @@ public class MainMenuFragment extends Fragment
 
         recyclerViewPackageHistory = (RecyclerView) view.findViewById(R.id.recyclerview_packageHistory);
         recyclerViewIncomingPackages = (RecyclerView) view.findViewById(R.id.recyclerview_incomingPackages);
+        recyclerViewFeaturedCards = (RecyclerView) view.findViewById(R.id.recyleriew_FeaturedCards);
 
         history = new ArrayList<>();
         incoming = new ArrayList<>();
@@ -95,14 +105,19 @@ public class MainMenuFragment extends Fragment
         recyclerViewPackageHistory.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(getContext());
 
+        featuredCards = new ArrayList<>();
+
 //        Drawable dividerDrawable = ContextCompat.getDrawable(getContext(), R.drawable.divider);
 //        RecyclerView.ItemDecoration dividerItemDecoration = new DividerItemDecoration(dividerDrawable);
 //        recyclerViewPackageHistory.addItemDecoration(dividerItemDecoration);
 
         recyclerViewPackageHistory.setLayoutManager(linearLayoutManager);
         adaptor = new GenericListStringRecyclerViewAdaptor(history);
+        cardsRecyclerviewAdaptor = new FeaturedCardsRecyclerviewAdaptor(featuredCards);
         generateDummyData();
         recyclerViewPackageHistory.setAdapter(adaptor);
+        recyclerViewFeaturedCards.setAdapter(cardsRecyclerviewAdaptor);
+        recyclerViewFeaturedCards.setLayoutManager(new GridLayoutManager(getContext(), 3));
 
         if (incoming.isEmpty())
         {
@@ -195,6 +210,8 @@ public class MainMenuFragment extends Fragment
 
 
 
+
+
     }
 
     public void call()
@@ -227,6 +244,20 @@ public class MainMenuFragment extends Fragment
 //
 //        PackageObject object7 = new PackageObject("HAWB0000000029510018", "Book/ Home Accessories", "UPS", "1018", "Delivered");
 //        history.add(object7);
+
+
+
+        Drawable one = getResources().getDrawable(R.drawable.bg_ad_always_a_deal);
+        Drawable two = getResources().getDrawable(R.drawable.bg_ad_websource_love);
+        Drawable three = getResources().getDrawable(R.drawable.bg_ad_just_shop);
+
+        FeaturedCard featuredCard = new FeaturedCard(one);
+        FeaturedCard featuredCard2 = new FeaturedCard(two);
+        FeaturedCard featuredCard3 = new FeaturedCard(three);
+
+        featuredCards.add(featuredCard);
+        featuredCards.add(featuredCard2);
+        featuredCards.add(featuredCard3);
 
 
 

@@ -8,6 +8,8 @@
     android:background="@color/whiteGrey"
     tools:context="com.shipwebsource.mywebsource.MainMenuFragment">
 
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,12 +19,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <HorizontalScrollView
+                android:id="@+id/scrollview_featureCards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyleriew_FeaturedCards"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </HorizontalScrollView>
+
 
             <HorizontalScrollView
                 android:id="@+id/layout_tags"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbarSize="1dp"
+                android:layout_below="@id/scrollview_featureCards"
                 android:scrollbars="none">
 
 
