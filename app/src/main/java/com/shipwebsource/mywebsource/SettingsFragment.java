@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.shipwebsource.mywebsource.Helpers.SettingsBuddy;
@@ -22,7 +24,8 @@ public class SettingsFragment extends Fragment
     private View view;
     private TextView loggedInUser;
     private SettingsBuddy settingsBuddy;
-
+    private CheckBox allowNotifications;
+    private Button saveSettings;
     public SettingsFragment()
     {
         // Required empty public constructor
@@ -42,6 +45,22 @@ public class SettingsFragment extends Fragment
         super.onActivityCreated(savedInstanceState);
        loggedInUser = (TextView)view.findViewById(R.id.textview_loggedInUser);
         settingsBuddy = SettingsBuddy.getInstance(getContext());
+        allowNotifications = (CheckBox) view.findViewById(R.id.checkbox_AllowGeneralNotifications);
+        saveSettings = (Button) view.findViewById(R.id.button_SaveSettings);
+        String notificationsEnabled = settingsBuddy.getData("GeneralNotificationsEnabled");
+        if (notificationsEnabled.equals("true"))
+        {
+            allowNotifications.setChecked(true);
+
+        }
+
+        else
+        {
+            allowNotifications.setChecked(false);
+        }
+
+
+
         String name = settingsBuddy.getData("Name");
         String accountNumber = settingsBuddy.getData("AccountNumber");
 
@@ -78,6 +97,24 @@ public class SettingsFragment extends Fragment
                 });
 
                 popup.show();//showing popup menu
+            }
+        });
+
+        saveSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if (allowNotifications.isChecked())
+                {
+                    settingsBuddy.saveData("GeneralNotificationsEnabled", "true");
+                }
+
+                else
+                {
+                    settingsBuddy.saveData("GeneralNotificationsEnabled", "false");
+                }
+
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.masterSinglePane, new MainMenuFragment()).commit();
             }
         });
 

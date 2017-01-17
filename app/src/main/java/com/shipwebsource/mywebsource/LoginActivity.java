@@ -52,11 +52,12 @@ public class LoginActivity extends AppCompatActivity
     private static final int MY_PERMISSIONS_REQUEST_ACCOUNTS = 1;
 
     private RequestQueue requestQueue;
-    private static final String URL = "http://200.7.93.38/logiksys/courier-app-services/login.php";
+    private static final String URL = "http://noel.netau.net/webservice/login.php";
 
     private StringRequest request;
     private String fullName = "";
     private String message = "";
+    private String country = "";
 
 
     public final String DEFAULT = "N/A"; // A default constant for use with sharedPreferences
@@ -67,6 +68,14 @@ public class LoginActivity extends AppCompatActivity
     private String accountnumber;
     private String password;
     private String wsKey;
+
+
+    private final String PREFIX_DOMINICA = "DOM";
+    private final String PREFIX_GRENADA = "GRE";
+    private final String PREFIX_GUYANA = "GUY";
+    private final String PREFIX_JAMAICA = "JCA";
+    private final String PREFIX_ST_LUCIA = "BSL";
+    private final String PREFIX_TRINIDAD = "WEB";
 
 
     @Override
@@ -109,18 +118,23 @@ public class LoginActivity extends AppCompatActivity
 
                             JSONObject jsonObject = new JSONObject(response);
 
-                            if(jsonObject.getString("valid").equals("success"))
+                            if(jsonObject.getString("success").equals("true"))
                             {
                                 Log.d(TAG, "Login data is valid");
                                 // Set the full name and the message returned from the Json Response
                                 fullName = jsonObject.getString("firstname")+" " +jsonObject.getString("lastname");
                                 message = jsonObject.getString("message");
+                                country = jsonObject.getString("country");
 
                                 // Store the accountnumber, password, full name and key to enable automatic login each time
                                 settings.saveData("AccountNumber", accountnumber);
                                 settings.saveData("Password", password);
                                 settings.saveData("Name", fullName);
+                                settings.saveData("Country", country);
                                 settings.saveData("Key", wsKey);
+
+//                                findCountryBasedOnAccountPrefix(accountnumber);
+
 
                                 Log.d(TAG, fullName + " " + message);
 
@@ -133,7 +147,7 @@ public class LoginActivity extends AppCompatActivity
 
                             }
 
-                            else if(jsonObject.getString("valid").equals("failure"))
+                            else if(jsonObject.getString("success").equals("false"))
                             {
                                 message = jsonObject.getString("message");
                                 e.setText(message);
@@ -166,7 +180,7 @@ public class LoginActivity extends AppCompatActivity
                     protected Map<String, String> getParams() throws AuthFailureError
                     {
                         HashMap<String, String> hashMap = new HashMap<String, String>();
-                        hashMap.put("username", accountnumber);
+                        hashMap.put("accountNumber", accountnumber);
                         hashMap.put("password", password);
                         hashMap.put("key", wsKey);
                         return hashMap;
@@ -198,9 +212,6 @@ public class LoginActivity extends AppCompatActivity
         }
 
     }
-
-
-
 
 
     private boolean checkAndRequestPermissions()
@@ -366,6 +377,67 @@ public class LoginActivity extends AppCompatActivity
         return false;
 
     }
+
+
+    private void findCountryBasedOnAccountPrefix(String accountnumber)
+    {
+        String prefix = accountnumber.substring(0, 3);
+        String country = "";
+        switch (prefix)
+        {
+            case PREFIX_DOMINICA:
+                Snackbar dm = Snackbar.make(findViewById(android.R.id.content), "ShopBox Dominica", Snackbar.LENGTH_LONG);
+                dm.show();
+                country = "Dominica";
+                settings.saveData("Country", country );
+                break;
+
+            case PREFIX_GRENADA:
+                Snackbar gd = Snackbar.make(findViewById(android.R.id.content), "Web Source Grenada", Snackbar.LENGTH_LONG);
+                gd.show();
+                country = "Grenada";
+                settings.saveData("Country", country );
+                break;
+
+            case PREFIX_GUYANA:
+                Snackbar gy = Snackbar.make(findViewById(android.R.id.content), "Web Source Guyana", Snackbar.LENGTH_LONG);
+                gy.show();
+                country = "Guyana";
+                settings.saveData("Country", country );
+                break;
+
+            case PREFIX_JAMAICA:
+                Snackbar jm = Snackbar.make(findViewById(android.R.id.content), "Web Source Jamaica", Snackbar.LENGTH_LONG);
+                jm.show();
+                country = "Jamaica";
+                settings.saveData("Country", country );
+                break;
+
+            case PREFIX_ST_LUCIA:
+                Snackbar lc = Snackbar.make(findViewById(android.R.id.content), "ShopBox St Lucia", Snackbar.LENGTH_LONG);
+                lc.show();
+                country = "St Lucia";
+                settings.saveData("Country", country );
+                break;
+
+            case PREFIX_TRINIDAD:
+                Snackbar tt = Snackbar.make(findViewById(android.R.id.content), "Web Source Trinidad", Snackbar.LENGTH_LONG);
+                tt.show();
+                country = "Trinidad";
+                settings.saveData("Country", country );
+                break;
+
+            default:
+                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Web Source Trinidad", Snackbar.LENGTH_LONG);
+                snackbar.show();
+                country = "Trinidad";
+                settings.saveData("Country", country );
+                break;
+
+        }
+    }
+
+
 
 
 

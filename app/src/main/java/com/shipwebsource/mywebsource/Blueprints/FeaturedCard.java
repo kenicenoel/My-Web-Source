@@ -17,14 +17,13 @@ public class FeaturedCard
     public FeaturedCard(Drawable imageView)
     {
 
-
         this.cardImage = imageView;
-
 
     }
 
 
-    public Drawable getCardImage() {
+    public Drawable getCardImage()
+    {
         return cardImage;
     }
     public void setCardImage(Drawable imageView) {

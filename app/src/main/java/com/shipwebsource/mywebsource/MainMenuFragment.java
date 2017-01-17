@@ -248,7 +248,8 @@ public class MainMenuFragment extends Fragment
 
 
         Drawable one = getResources().getDrawable(R.drawable.bg_ad_always_a_deal);
-        Drawable two = getResources().getDrawable(R.drawable.bg_ad_websource_love);
+        Drawable two = getResources().getDrawable(R.drawable.bg_ad_websource_love
+        );
         Drawable three = getResources().getDrawable(R.drawable.bg_ad_just_shop);
 
         FeaturedCard featuredCard = new FeaturedCard(one);
