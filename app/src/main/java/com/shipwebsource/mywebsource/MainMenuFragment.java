@@ -10,24 +10,40 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.shipwebsource.mywebsource.Adaptors.FeaturedCardsRecyclerviewAdaptor;
 import com.shipwebsource.mywebsource.Adaptors.GenericListStringRecyclerViewAdaptor;
 import com.shipwebsource.mywebsource.Blueprints.FeaturedCard;
 import com.shipwebsource.mywebsource.Blueprints.PackageObject;
+import com.shipwebsource.mywebsource.Helpers.SettingsBuddy;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MainMenuFragment extends Fragment
 {
     private final String TAG = MainMenuFragment.class.getSimpleName();
-    private GenericListStringRecyclerViewAdaptor adaptor;
+    private GenericListStringRecyclerViewAdaptor packageHistoryAdaptor;
+    private GenericListStringRecyclerViewAdaptor incomingPackagesAdaptor;
     private FeaturedCardsRecyclerviewAdaptor cardsRecyclerviewAdaptor;
     private RecyclerView recyclerViewPackageHistory;
     private RecyclerView recyclerViewIncomingPackages;
@@ -36,6 +52,7 @@ public class MainMenuFragment extends Fragment
     private ArrayList<PackageObject> history;
     private ArrayList<PackageObject> incoming;
     private ArrayList<FeaturedCard> featuredCards;
+    private RelativeLayout packageHistorylayout;
     private RelativeLayout incomingPackagesRelativeLayout;
 
     private TextView footerCallUs;
@@ -50,9 +67,14 @@ public class MainMenuFragment extends Fragment
 
     private GridLayoutManager gridLayoutManager;
 
+    private final String URL = "http://noel.netau.net/webservice/get_package_history.php";
+    private final String URL_INCOMING = "http://noel.netau.net/webservice/get_incoming_packages.php";
+
 
     private static final String WEBSOURCE = "tel:18682854932";
     private View view;
+    private RequestQueue requestQueue;
+    private LinearLayoutManager linearLayoutManagerB;
 
 
     public MainMenuFragment()
@@ -67,7 +89,6 @@ public class MainMenuFragment extends Fragment
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-
 
     }
 
@@ -91,6 +112,9 @@ public class MainMenuFragment extends Fragment
         footerLoveUs = (TextView)view.findViewById(R.id.footer_loveUs);
 
 
+
+
+
         tagPreAlert = (TextView) view.findViewById(R.id.tag_pre_alerts);
         tagCustomsRates = (TextView) view.findViewById(R.id.tag_customs_rates);
         tagPackageEstimator = (TextView) view.findViewById(R.id.tag_package_estimator);
@@ -99,38 +123,79 @@ public class MainMenuFragment extends Fragment
         recyclerViewIncomingPackages = (RecyclerView) view.findViewById(R.id.recyclerview_incomingPackages);
         recyclerViewFeaturedCards = (RecyclerView) view.findViewById(R.id.recyleriew_FeaturedCards);
 
+        packageHistorylayout = (RelativeLayout) view.findViewById(R.id.layout_emptyView_packageHistory);
+        incomingPackagesRelativeLayout = (RelativeLayout) view.findViewById(R.id.layout_emptyView_incomingPackages);
+
+
         history = new ArrayList<>();
         incoming = new ArrayList<>();
-
-        recyclerViewPackageHistory.setHasFixedSize(true);
-        linearLayoutManager = new LinearLayoutManager(getContext());
-
         featuredCards = new ArrayList<>();
 
-//        Drawable dividerDrawable = ContextCompat.getDrawable(getContext(), R.drawable.divider);
-//        RecyclerView.ItemDecoration dividerItemDecoration = new DividerItemDecoration(dividerDrawable);
-//        recyclerViewPackageHistory.addItemDecoration(dividerItemDecoration);
+        recyclerViewPackageHistory.setHasFixedSize(true);
+        recyclerViewIncomingPackages.setHasFixedSize(true);
+
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManagerB = new LinearLayoutManager(getContext());
+
+
 
         recyclerViewPackageHistory.setLayoutManager(linearLayoutManager);
-        adaptor = new GenericListStringRecyclerViewAdaptor(history);
-        cardsRecyclerviewAdaptor = new FeaturedCardsRecyclerviewAdaptor(featuredCards);
-        generateDummyData();
-        recyclerViewPackageHistory.setAdapter(adaptor);
-        recyclerViewFeaturedCards.setAdapter(cardsRecyclerviewAdaptor);
+        recyclerViewIncomingPackages.setLayoutManager(linearLayoutManagerB);
         recyclerViewFeaturedCards.setLayoutManager(new GridLayoutManager(getContext(), 3));
 
-        if (incoming.isEmpty())
-        {
-            incomingPackagesRelativeLayout = (RelativeLayout) view.findViewById(R.id.layout_emptyView_incomingPackages);
-            incomingPackagesRelativeLayout.setVisibility(View.VISIBLE);
-            recyclerViewIncomingPackages.setVisibility(View.INVISIBLE);
-        }
+        packageHistoryAdaptor = new GenericListStringRecyclerViewAdaptor(history);
+        incomingPackagesAdaptor = new GenericListStringRecyclerViewAdaptor(incoming);
+        cardsRecyclerviewAdaptor = new FeaturedCardsRecyclerviewAdaptor(featuredCards);
 
-        else
+        Drawable a = getResources().getDrawable(R.drawable.bg_ad_always_a_deal);
+        Drawable b = getResources().getDrawable(R.drawable.bg_ad_websource_love);
+        Drawable c = getResources().getDrawable(R.drawable.bg_ad_just_shop);
+
+        FeaturedCard featuredCard = new FeaturedCard(c);
+        FeaturedCard featuredCard2 = new FeaturedCard(b);
+        FeaturedCard featuredCard3 = new FeaturedCard(a);
+
+        featuredCards.add(featuredCard);
+        featuredCards.add(featuredCard2);
+        featuredCards.add(featuredCard3);
+
+        recyclerViewPackageHistory.setAdapter(packageHistoryAdaptor);
+        recyclerViewFeaturedCards.setAdapter(cardsRecyclerviewAdaptor);
+        recyclerViewIncomingPackages.setAdapter(incomingPackagesAdaptor);
+
+
+//        generateDummyData();
+
+        new Thread(new Runnable()
         {
-            incomingPackagesRelativeLayout.setVisibility(View.GONE);
-            recyclerViewIncomingPackages.setVisibility(View.VISIBLE);
-        }
+            @Override
+            public void run()
+            {
+                getPackageHistory();
+            }
+        })
+        {
+
+        }.start();
+
+
+        new Thread(new Runnable() {
+            @Override
+            public void run()
+            {
+                getIncomingPackages();
+            }
+        }).start();
+
+        checkIfListsAreEmpty();
+
+
+
+//        checkIfListsAreEmpty();
+//        getIncomingPackages();
+
+
+
 
         footerCallUs.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -206,12 +271,6 @@ public class MainMenuFragment extends Fragment
             }
         });
 
-
-
-
-
-
-
     }
 
     public void call()
@@ -247,18 +306,7 @@ public class MainMenuFragment extends Fragment
 
 
 
-        Drawable one = getResources().getDrawable(R.drawable.bg_ad_always_a_deal);
-        Drawable two = getResources().getDrawable(R.drawable.bg_ad_websource_love
-        );
-        Drawable three = getResources().getDrawable(R.drawable.bg_ad_just_shop);
 
-        FeaturedCard featuredCard = new FeaturedCard(one);
-        FeaturedCard featuredCard2 = new FeaturedCard(two);
-        FeaturedCard featuredCard3 = new FeaturedCard(three);
-
-        featuredCards.add(featuredCard);
-        featuredCards.add(featuredCard2);
-        featuredCards.add(featuredCard3);
 
 
 
@@ -273,6 +321,184 @@ public class MainMenuFragment extends Fragment
                 R.anim.slide_right_exit);
 
         return t;
+
+    }
+
+
+    private void getPackageHistory()
+    {
+
+            SettingsBuddy buddy = SettingsBuddy.getInstance(getContext());
+            final String accountNumber = buddy.getData("AccountNumber");
+            requestQueue = Volley.newRequestQueue(getContext());
+
+
+                // Get the package history
+                StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        Log.d(TAG, "JSON Object Response");
+                        try
+                        {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray packageHistory = jsonObject.getJSONArray("package_history");
+                            for (int i = 0; i < packageHistory.length(); i++)
+                            {
+                                JSONObject packages = packageHistory.getJSONObject(i);
+                                String packageNumber = packages.getString("packageNumber");
+                                String desc = packages.getString("description");
+                                String shipper = packages.getString("shipper");
+                                String status = packages.getString("status");
+                                String cost = packages.getString("cost");
+                                String timestamp = packages.getString("timestamp");
+
+                                PackageObject obj = new PackageObject( packageNumber, desc, shipper, cost, status);
+                                history.add(obj);
+
+                            }
+                            packageHistoryAdaptor.notifyDataSetChanged();
+                            if (history.isEmpty())
+                            {
+                                packageHistorylayout.setVisibility(View.VISIBLE);
+                                recyclerViewPackageHistory.setVisibility(View.INVISIBLE);
+                            }
+
+                            else
+                            {
+                                packageHistorylayout.setVisibility(View.GONE);
+                                recyclerViewPackageHistory.setVisibility(View.VISIBLE);
+                            }
+
+
+                            Log.d(TAG, response);
+
+
+                        } catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        Log.d(TAG, error.getMessage());
+
+                    }
+                }) {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError
+                    {
+                        HashMap<String, String> hashMap = new HashMap<String, String>();
+                        hashMap.put("accountNumber", accountNumber);
+                        return hashMap;
+                    }
+                };
+
+                requestQueue.add(request);
+
+
+
+
+    }
+
+
+
+
+
+
+
+    private void getIncomingPackages()
+    {
+
+        SettingsBuddy buddy = SettingsBuddy.getInstance(getContext());
+        final String accountNumber = buddy.getData("AccountNumber");
+        requestQueue = Volley.newRequestQueue(getContext());
+
+
+
+                // Incoming packages
+                StringRequest request = new StringRequest(Request.Method.POST, URL_INCOMING, new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        Log.d(TAG, "JSON Object Response");
+                        try
+                        {
+
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray packageHistory = jsonObject.getJSONArray("incoming_packages");
+                            for (int i = 0; i < packageHistory.length(); i++)
+                            {
+                                JSONObject packages = packageHistory.getJSONObject(i);
+                                String packageNumber = packages.getString("packageNumber");
+                                String desc = packages.getString("description");
+                                String shipper = packages.getString("shipper");
+                                String status = packages.getString("status");
+                                String cost = packages.getString("cost");
+                                String timestamp = packages.getString("timestamp");
+
+                                PackageObject obj = new PackageObject( packageNumber, desc, shipper, cost, status);
+                                incoming.add(obj);
+
+                            }
+                            incomingPackagesAdaptor.notifyDataSetChanged();
+                            if (incoming.isEmpty())
+                            {
+                                incomingPackagesRelativeLayout.setVisibility(View.VISIBLE);
+                                recyclerViewIncomingPackages.setVisibility(View.INVISIBLE);
+                            }
+
+                            else
+                            {
+                                incomingPackagesRelativeLayout.setVisibility(View.GONE);
+                                recyclerViewIncomingPackages.setVisibility(View.VISIBLE);
+                            }
+
+                            Log.d(TAG, response);
+
+
+
+
+                        } catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        Log.d(TAG, error.getMessage());
+
+                    }
+                }) {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError
+                    {
+                        HashMap<String, String> hashMap = new HashMap<String, String>();
+                        hashMap.put("accountNumber", accountNumber);
+                        return hashMap;
+                    }
+                };
+
+                requestQueue.add(request);
+
+
+            }
+
+
+
+
+
+
+    private void checkIfListsAreEmpty()
+    {
 
     }
 

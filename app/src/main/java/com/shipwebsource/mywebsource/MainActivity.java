@@ -95,8 +95,8 @@ public class MainActivity extends AppCompatActivity
 
 
         actionSettings = (ImageView) toolbar.findViewById(R.id.action_settings);
-
-        actionSettings.setOnClickListener(new View.OnClickListener() {
+        actionSettings.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v)
             {
@@ -123,12 +123,6 @@ public class MainActivity extends AppCompatActivity
 
         fragmentTransaction.commit();
 
-
-
-
-
-
-
     }
 
 
@@ -151,9 +145,6 @@ public class MainActivity extends AppCompatActivity
     protected void onResume()
     {
         super.onResume();
-
-
-
 
     }
 
@@ -294,8 +285,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
-
     private void registerToken()
     {
         SettingsBuddy buddy = SettingsBuddy.getInstance(this);
@@ -303,18 +292,23 @@ public class MainActivity extends AppCompatActivity
         Log.d(TAG, "Ready to register token.");
         requestQueue = Volley.newRequestQueue(this);
 
-        StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>()
+        {
             @Override
-            public void onResponse(String response) {
+            public void onResponse(String response)
+            {
                 Log.d(TAG, "JSON Object Response");
-                try {
+                try
+                {
 
                     JSONObject jsonObject = new JSONObject(response);
                     Log.d(TAG, response);
 
-                    if (jsonObject.getString("success").equals("true")) {
+                    if (jsonObject.getString("success").equals("true"))
+                    {
                         Log.d(TAG, "Successully updated user token.");
-                    } else if (jsonObject.getString("success").equals("false")) {
+                    } else if (jsonObject.getString("success").equals("false"))
+                    {
                         Log.d(TAG, "Failed to update user token.");
 
 
@@ -333,7 +327,8 @@ public class MainActivity extends AppCompatActivity
             }
         }) {
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
                 HashMap<String, String> hashMap = new HashMap<String, String>();
                 hashMap.put("token", token);
                 hashMap.put("accountNumber", accountNumber);
@@ -346,6 +341,9 @@ public class MainActivity extends AppCompatActivity
         requestQueue.add(request);
 
     }
+
+
+
 
 
 

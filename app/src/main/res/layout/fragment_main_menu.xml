@@ -131,22 +131,43 @@
                 />
 
 
-
             <RelativeLayout
                 android:id="@+id/layout_packageHistory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:layout_below="@id/packageHistoryHeader">
+
+                <RelativeLayout
+                    android:id="@+id/layout_emptyView_packageHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+
+
+
+                    <TextView
+                        android:id="@+id/emptyView_packageHistoryTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:drawableTop="@drawable/ic_local_shipping_grey_300_48dp"
+                        android:drawablePadding="10dp"
+                        android:text="You haven't shipped any packages with us"
+                        android:textSize="15sp"
+                        android:textColor="@color/greyv2"
+
+                        />
+
+                </RelativeLayout>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recyclerview_packageHistory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    tools:listitem="@layout/layout_recyclerview_list"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true">
+                    android:layout_alignParentLeft="true">
 
                 </android.support.v7.widget.RecyclerView>
 
@@ -190,6 +211,7 @@
                 android:id="@+id/layout_IncomingPackages"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_below="@id/incomingPackagesHeader">
 
                 <RelativeLayout
@@ -230,12 +252,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:layout_below="@+id/layout_emptyView_incomingPackages"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    tools:listitem="@layout/layout_recyclerview_list">
+                    >
 
                 </android.support.v7.widget.RecyclerView>
+
 
 
             </RelativeLayout>
