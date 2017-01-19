@@ -206,7 +206,6 @@
                 />
 
 
-
             <RelativeLayout
                 android:id="@+id/layout_IncomingPackages"
                 android:layout_width="match_parent"

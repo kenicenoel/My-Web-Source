@@ -187,15 +187,6 @@ public class MainMenuFragment extends Fragment
             }
         }).start();
 
-        checkIfListsAreEmpty();
-
-
-
-//        checkIfListsAreEmpty();
-//        getIncomingPackages();
-
-
-
 
         footerCallUs.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -491,16 +482,6 @@ public class MainMenuFragment extends Fragment
 
 
             }
-
-
-
-
-
-
-    private void checkIfListsAreEmpty()
-    {
-
-    }
 
 
 }
