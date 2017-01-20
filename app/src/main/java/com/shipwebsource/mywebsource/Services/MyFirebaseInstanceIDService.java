@@ -21,7 +21,7 @@ import java.util.Map;
 
 
 
-public class FirebaseInstanceIDService extends FirebaseInstanceIdService
+public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService
 {
 
     private static final String TAG = FirebaseInstanceIdService.class.getSimpleName();

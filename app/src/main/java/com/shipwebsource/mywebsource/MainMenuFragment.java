@@ -25,7 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.shipwebsource.mywebsource.Adaptors.FeaturedCardsRecyclerviewAdaptor;
-import com.shipwebsource.mywebsource.Adaptors.GenericListStringRecyclerViewAdaptor;
+import com.shipwebsource.mywebsource.Adaptors.PackageListRecyclerViewAdaptor;
 import com.shipwebsource.mywebsource.Blueprints.FeaturedCard;
 import com.shipwebsource.mywebsource.Blueprints.PackageObject;
 import com.shipwebsource.mywebsource.Helpers.SettingsBuddy;
@@ -39,11 +39,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class MainMenuFragment extends Fragment
+public class MainMenuFragment extends Fragment implements PackageListRecyclerViewAdaptor.ClickListener
 {
     private final String TAG = MainMenuFragment.class.getSimpleName();
-    private GenericListStringRecyclerViewAdaptor packageHistoryAdaptor;
-    private GenericListStringRecyclerViewAdaptor incomingPackagesAdaptor;
+    private PackageListRecyclerViewAdaptor packageHistoryAdaptor;
+    private PackageListRecyclerViewAdaptor incomingPackagesAdaptor;
     private FeaturedCardsRecyclerviewAdaptor cardsRecyclerviewAdaptor;
     private RecyclerView recyclerViewPackageHistory;
     private RecyclerView recyclerViewIncomingPackages;
@@ -75,6 +75,8 @@ public class MainMenuFragment extends Fragment
     private View view;
     private RequestQueue requestQueue;
     private LinearLayoutManager linearLayoutManagerB;
+    private int currentPosition;
+    private int previousPosition;
 
 
     public MainMenuFragment()
@@ -143,9 +145,11 @@ public class MainMenuFragment extends Fragment
         recyclerViewIncomingPackages.setLayoutManager(linearLayoutManagerB);
         recyclerViewFeaturedCards.setLayoutManager(new GridLayoutManager(getContext(), 3));
 
-        packageHistoryAdaptor = new GenericListStringRecyclerViewAdaptor(history);
-        incomingPackagesAdaptor = new GenericListStringRecyclerViewAdaptor(incoming);
+        packageHistoryAdaptor = new PackageListRecyclerViewAdaptor(history);
+        incomingPackagesAdaptor = new PackageListRecyclerViewAdaptor(incoming);
         cardsRecyclerviewAdaptor = new FeaturedCardsRecyclerviewAdaptor(featuredCards);
+        packageHistoryAdaptor.setClickListener(this);
+        incomingPackagesAdaptor.setClickListener(this);
 
         Drawable a = getResources().getDrawable(R.drawable.bg_ad_always_a_deal);
         Drawable b = getResources().getDrawable(R.drawable.bg_ad_websource_love);
@@ -482,6 +486,24 @@ public class MainMenuFragment extends Fragment
 
 
             }
+
+
+    @Override
+    public void onItemClick(int position, int previousPostion, View v)
+    {
+        TextView pNum = (TextView) v.findViewById(R.id.layout_packageNumber);
+
+        String packageNumber = pNum.getText().toString();
+        currentPosition = position;
+        previousPosition = previousPostion;
+
+        PackageDetailsFragment fragment = PackageDetailsFragment.newInstance(packageNumber);
+        FragmentTransaction ft = setupFragmentTransactionWithSlideAnimations();
+        ft.replace(R.id.masterSinglePane, fragment, "PackageDetailsFragment").addToBackStack(TAG);
+        ft.commit();
+
+    }
+
 
 
 }

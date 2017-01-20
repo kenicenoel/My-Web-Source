@@ -1,0 +1,116 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:wheel="http://schemas.android.com/apk/res-auto"
+    tools:context="com.shipwebsource.mywebsource.PackageDetailsFragment"
+    android:background="@color/whiteGrey">
+
+    <RelativeLayout
+        android:id="@+id/layout_packageDetails_packageSummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/textview_packageDetails_packageNumber"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text=""
+            tools:text="Package number"
+            android:gravity="center_vertical"
+            android:drawablePadding="5dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-medium"
+            android:textAllCaps="true"
+            />
+
+
+        <TextView
+            android:id="@+id/textview_packageDetails_Shipper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text=""
+            tools:text="Shipper"
+            android:gravity="center_vertical"
+            android:drawablePadding="5dp"
+            android:layout_below="@id/textview_packageDetails_packageNumber"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-light"
+            android:textAllCaps="true"
+            />
+
+        <TextView
+            android:id="@+id/textview_packageDetails_Description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text=""
+            tools:text="Item description"
+            android:gravity="center_vertical"
+            android:drawablePadding="5dp"
+            android:layout_below="@id/textview_packageDetails_Shipper"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-light"
+            android:textAllCaps="true"
+            />
+
+        <TextView
+            android:id="@+id/textview_packageDetails_Cost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text=""
+            tools:text="$125.95"
+            android:gravity="center_vertical"
+            android:drawablePadding="5dp"
+            android:layout_below="@id/textview_packageDetails_Description"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-light"
+            android:textAllCaps="true"
+            />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textview_packageDetails_TrackingHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:text="Tracking History"
+        tools:text="Tracking history"
+        android:gravity="center"
+        android:drawablePadding="5dp"
+        android:layout_below="@id/layout_packageDetails_packageSummary"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="17sp"
+        android:fontFamily="sans-serif-light"
+        android:textAllCaps="false"
+
+        />
+
+    <com.pnikosis.materialishprogress.ProgressWheel
+        android:id="@+id/progress_wheel"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/textview_packageDetails_TrackingHistory"
+        wheel:matProg_barColor="#5588FF"
+        android:visibility="gone"
+        wheel:matProg_progressIndeterminate="true" />
+
+
+
+
+</RelativeLayout>

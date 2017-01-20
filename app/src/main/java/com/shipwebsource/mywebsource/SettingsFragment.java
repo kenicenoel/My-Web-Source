@@ -43,10 +43,12 @@ public class SettingsFragment extends Fragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
-       loggedInUser = (TextView)view.findViewById(R.id.textview_loggedInUser);
+        loggedInUser = (TextView)view.findViewById(R.id.textview_loggedInUser);
         settingsBuddy = SettingsBuddy.getInstance(getContext());
         allowNotifications = (CheckBox) view.findViewById(R.id.checkbox_AllowGeneralNotifications);
         saveSettings = (Button) view.findViewById(R.id.button_SaveSettings);
+
+        // Check if allowNotifications is enabled or not
         String notificationsEnabled = settingsBuddy.getData("GeneralNotificationsEnabled");
         if (notificationsEnabled.equals("true"))
         {

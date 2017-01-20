@@ -14,7 +14,7 @@ import com.shipwebsource.mywebsource.R;
  */
 
 
-public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService
+public class MyFirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService
 {
     private final String CONTENT_TITLE  = "My Web Source";
     @Override
@@ -37,6 +37,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                 .setContentTitle(CONTENT_TITLE)
                 .setContentText(message)
                 .setSmallIcon(R.drawable.ic_notification)
+                .setPriority(1)
                 .setContentIntent(pendingIntent);
 
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);

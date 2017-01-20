@@ -1,6 +1,7 @@
 package com.shipwebsource.mywebsource.Adaptors;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +14,18 @@ import com.shipwebsource.mywebsource.R;
 import java.util.ArrayList;
 
 
-public class GenericListStringRecyclerViewAdaptor extends RecyclerView.Adapter<GenericListStringRecyclerViewAdaptor.MyViewHolder>
+public class PackageListRecyclerViewAdaptor extends RecyclerView.Adapter<PackageListRecyclerViewAdaptor.MyViewHolder>
 {
-    private static String TAG = GenericListStringRecyclerViewAdaptor.class.getSimpleName();
+    private static String TAG = PackageListRecyclerViewAdaptor.class.getSimpleName();
     private LayoutInflater inflator;
     private ArrayList<PackageObject> packageObjects;
+    private static ClickListener clickListener;
+
+    private static int previousPosition = -1;
+    int selectedPosition=-1;
 
 
-    public GenericListStringRecyclerViewAdaptor(ArrayList<PackageObject> packageObjects)
+    public PackageListRecyclerViewAdaptor(ArrayList<PackageObject> packageObjects)
     {
         this.packageObjects = packageObjects;
     }
@@ -33,6 +38,12 @@ public class GenericListStringRecyclerViewAdaptor extends RecyclerView.Adapter<G
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }
+
+    public interface ClickListener
+    {
+        void onItemClick(int position, int previousPostion, View v);
+    }
+
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position)
@@ -88,7 +99,7 @@ public class GenericListStringRecyclerViewAdaptor extends RecyclerView.Adapter<G
         return packageObjects.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         TextView packageNumber;
         TextView description;
@@ -108,7 +119,29 @@ public class GenericListStringRecyclerViewAdaptor extends RecyclerView.Adapter<G
              shipper = (TextView) itemView.findViewById(R.id.layout_shipper);
              price = (TextView) itemView.findViewById(R.id.layout_price);
              status = (TextView) itemView.findViewById(R.id.layout_packageStatus);
+             itemView.setOnClickListener(this);
 
          }
+
+        @Override
+        public void onClick(View v)
+        {
+
+            if (clickListener != null)
+            {
+                clickListener.onItemClick(getAdapterPosition(), previousPosition, v);
+            }
+
+            Log.d(TAG, "I was clicked.");
+
+            selectedPosition=getAdapterPosition();
+            notifyDataSetChanged();
+        }
     }
+
+    public void setClickListener(ClickListener clickListener)
+    {
+        PackageListRecyclerViewAdaptor.clickListener = clickListener;
+    }
+
 }
